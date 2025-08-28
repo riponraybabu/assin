@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Emergency Service Directory</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fav-active {
+      color: red;
+    }
+  </style>
 </head>
 <body class="bg-green-50 min-h-screen flex flex-col">
 
@@ -12,44 +17,270 @@
   <header class="bg-white shadow-md py-4 px-6 flex justify-between items-center">
     <div class="flex items-center gap-2">
       <!-- Government Logo -->
-      <img src="assets/logo.png" alt="logo" class="w-10 h-10">
-      <span class="font-bold text-lg text-green-700">Emergency <br>Service </span>
+       <img src="assets/logo.png" alt="logo" class="w-10 h-10">
+
+      <span class="font-bold text-lg text-green-700">Emergency Service</span>
     </div>
     <div class="flex items-center gap-4">
-      <span class="text-red-500">❤ 0</span>
+      <span id="favCount" class="text-red-500">❤️ 0</span>
       <span class="text-green-500">✅ 100</span>
       <button class="bg-green-600 text-white px-3 py-1 rounded-lg">2 Copy</button>
     </div>
   </header>
-   <!-- Banner -->
+
+  <!-- Banner -->
   <section class="bg-green-700 text-center py-6 text-white relative">
     <!-- Banner Image (centered top) -->
     <img src="assets/logo.png" 
          class="w-20 h-20 mx-auto mb-3" alt="Bangladesh Logo">
     <h1 class="text-2xl font-bold">Emergency Service Directory</h1>
-    <p class="text-sm mt-2">Government Emergency Services at Your Fingertip – A Project by  Government of the People’s Republic of Bangladesh</p>
-  </section><!-- Main Content -->
+    <p class="text-sm mt-2">Government Emergency Services at Your Fingertip – A Project by Government of the People's Republic of Bangladesh</p>
+  </section>
+
+  <!-- Main Content -->
   <main class="flex flex-col lg:flex-row p-6 gap-6 flex-1">
     <!-- Emergency Cards -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1">
 
-      <!-- National Emergency -->
-       <div class="bg-white shadow-lg rounded-2xl p-4 flex flex-col items-start relative">
-          <button class="absolute top-2 right-2 text-gray-400 hover:text-red-500">❤</button>
-
+      <!-- Card Template Example -->
+      <div class="bg-white shadow-lg rounded-2xl p-5 border relative">
+        <!-- Favorite Button -->
+        <button onclick="toggleFav(this)" class="absolute top-3 right-3 text-gray-400 hover:text-red-500">❤️</button>
         <div class="flex items-center gap-2">
-          <img src="assets/emergency.png" class="w-8 h-8" alt="emergency">
+         <img src="assets/emergency.png" class="w-8 h-8" alt="emergency">
           <h2 class="font-bold text-lg">National Emergency Number</h2>
         </div>
         <p class="text-gray-500 text-sm">National Emergency</p>
         <p class="text-3xl font-bold text-green-600 mt-2">999</p>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('999')" class="border px-3 py-1 rounded-lg text-sm">📋 Copy</button>
-          <button onclick="callNumber('National Emergency Number','999')" class="bg-green-600 text-white px-3 py-1 rounded-lg text-sm">📞 Call</button>
+          <button onclick="copyNumber('999')" 
+                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+            Copy
+          </button>
+          <button onclick="callNumber('National Emergency Number','999')" 
+                  class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
+            Call
+          </button>
         </div>
       </div>
 
-    </main>
+      <!-- Police -->
+      <div class="bg-white shadow-lg rounded-2xl p-5 border relative">
+        <button onclick="toggleFav(this)" class="absolute top-3 right-3 text-gray-400 hover:text-red-500">❤️</button>
+        <div class="flex items-center gap-2">
+           <img src="assets/police.png" class="w-8 h-8" alt="police">
+          <h2 class="font-bold text-lg">Police Helpline Number</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Police</p>
 
+        <p class="text-3xl font-bold text-green-600 mt-2">999</p>
+        <div class="mt-4 flex gap-3">
+          <button onclick="copyNumber('999')" 
+                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+            Copy
+          </button>
+          <button onclick="callNumber('Police Helpline Number','999')" 
+                  class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
+            Call
+          </button>
+        </div>
+      </div>
+
+      <!-- Fire -->
+      <div class="bg-white shadow-lg rounded-2xl p-5 border relative">
+        <button onclick="toggleFav(this)" class="absolute top-3 right-3 text-gray-400 hover:text-red-500">❤️</button>
+        <div class="flex items-center gap-2">
+           <img src="assets/fire-service.png" class="w-8 h-8" alt="fire">
+          <h2 class="font-bold text-lg">Fire Service Number</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Fire Service </p>
+
+        <p class="text-3xl font-bold text-green-600 mt-2">999</p>
+        <div class="mt-4 flex gap-3">
+          <button onclick="copyNumber('999')" 
+                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+            Copy
+          </button>
+          <button onclick="callNumber('Fire Service Number','999')" 
+                  class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
+            Call
+          </button>
+        </div>
+      </div>
+
+      <!-- Ambulance -->
+      <div class="bg-white shadow-lg rounded-2xl p-5 border relative">
+        <button onclick="toggleFav(this)" class="absolute top-3 right-3 text-gray-400 hover:text-red-500">❤️</button>
+        <div class="flex items-center gap-2">
+            <img src="assets/ambulance.png" class="w-8 h-8" alt="ambulance">
+          <h2 class="font-bold text-lg">Ambulance Service</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Ambulance</p>
+
+        <p class="text-2xl font-bold text-green-600 mt-2">1994-999999</p>
+        <div class="mt-4 flex gap-3">
+          <button onclick="copyNumber('1994-999999')" 
+                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+            Copy
+          </button>
+          <button onclick="callNumber('Ambulance Service','1994-999999')" 
+                  class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
+            Call
+          </button>
+        </div>
+      </div>
+
+      <!-- Women & Child -->
+      <div class="bg-white shadow-lg rounded-2xl p-5 border relative">
+        <button onclick="toggleFav(this)" class="absolute top-3 right-3 text-gray-400 hover:text-red-500">❤️</button>
+        <div class="flex items-center gap-2">
+           <img src="assets/emergency.png" class="w-8 h-8" alt="child">
+          <h2 class="font-bold text-lg">Women & Child Helpline</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Women & Child Helpline</p>
+
+        <p class="text-3xl font-bold text-green-600 mt-2">109</p>
+        <div class="mt-4 flex gap-3">
+          <button onclick="copyNumber('109')" 
+                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+            Copy
+          </button>
+          <button onclick="callNumber('Women & Child Helpline','109')" 
+                  class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
+            Call
+          </button>
+        </div>
+      </div>
+
+      <!-- Anti-Corruption -->
+      <div class="bg-white shadow-lg rounded-2xl p-5 border relative">
+        <button onclick="toggleFav(this)" class="absolute top-3 right-3 text-gray-400 hover:text-red-500">❤️</button>
+        <div class="flex items-center gap-2">
+           <img src="assets/emergency.png" class="w-8 h-8" alt="govt">
+          <h2 class="font-bold text-lg">Anti-Corruption Helpline</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Anti-Corruption </p>
+
+        <p class="text-3xl font-bold text-green-600 mt-2">106</p>
+        <div class="mt-4 flex gap-3">
+          <button onclick="copyNumber('106')" 
+                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+            Copy
+          </button>
+          <button onclick="callNumber('Anti-Corruption Helpline','106')" 
+                  class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
+            Call
+          </button>
+        </div>
+      </div>
+
+      <!-- Electricity -->
+      <div class="bg-white shadow-lg rounded-2xl p-5 border relative">
+        <button onclick="toggleFav(this)" class="absolute top-3 right-3 text-gray-400 hover:text-red-500">❤️</button>
+        <div class="flex items-center gap-2">
+           <img src="assets/emergency.png" class="w-8 h-8" alt="electricity">
+          <h2 class="font-bold text-lg">Electricity Helpline</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Electricity Outage</p>
+
+        <p class="text-3xl font-bold text-green-600 mt-2">16216</p>
+        <div class="mt-4 flex gap-3">
+          <button onclick="copyNumber('16216')" 
+                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+            Copy
+          </button>
+          <button onclick="callNumber('Electricity Helpline','16216')" 
+                  class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
+            Call
+          </button>
+        </div>
+      </div>
+
+      <!-- Brac -->
+      <div class="bg-white shadow-lg rounded-2xl p-5 border relative">
+        <button onclick="toggleFav(this)" class="absolute top-3 right-3 text-gray-400 hover:text-red-500">❤️</button>
+        <div class="flex items-center gap-2">
+           <img src="https://img.icons8.com/emoji/48/office-building.png" class="w-8 h-8" alt="brac">
+          <h2 class="font-bold text-lg">Brac Helpline</h2>
+        </div>
+        <p class="text-gray-500 text-sm">Brac </p>
+
+        <p class="text-3xl font-bold text-green-600 mt-2">16445</p>
+        <div class="mt-4 flex gap-3">
+          <button onclick="copyNumber('16445')" 
+                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+            Copy
+          </button>
+          <button onclick="callNumber('Brac Helpline','16445')" 
+                  class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
+            Call
+          </button>
+        </div>
+      </div>
+
+      <!-- Bangladesh Railway -->
+      <div class="bg-white shadow-lg rounded-2xl p-5 border relative">
+        <button onclick="toggleFav(this)" class="absolute top-3 right-3 text-gray-400 hover:text-red-500">❤️</button>
+        <div class="flex items-center gap-2">
+           <img src="assets/emergency.png" class="w-8 h-8" alt="railway">
+          <h2 class="font-bold text-lg">Bangladesh Railway Helpline </h2>
+        </div>
+        <p class="text-gray-500 text-sm">Bangladesh Railway </p>
+
+        <p class="text-3xl font-bold text-green-600 mt-2">163</p>
+        <div class="mt-4 flex gap-3">
+          <button onclick="copyNumber('163')" 
+                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+            Copy
+          </button>
+          <button onclick="callNumber('Bangladesh Railway Helpline','163')" 
+                  class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
+            Call
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call History -->
+    <aside class="bg-white shadow-lg rounded-2xl p-5 w-full lg:w-64">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold">📞 Call History</h3>
+        <button onclick="clearHistory()" class="text-red-500 text-sm">Clear</button>
+      </div>
+      <ul id="callHistory" class="space-y-2 text-sm text-gray-600"></ul>
+    </aside>
+  </main>
+
+  <!-- JS -->
+  <script>
+    let favCount = 0;
+
+    function copyNumber(num) {
+      navigator.clipboard.writeText(num);
+      alert("Copied: " + num);
+    }
+
+    function callNumber(name, num) {
+      const time = new Date().toLocaleTimeString();
+      const li = document.createElement("li");
+      li.textContent = `${name} (${num}) - ${time}`;
+      document.getElementById("callHistory").prepend(li);
+    }
+
+    function clearHistory() {
+      document.getElementById("callHistory").innerHTML = "";
+    }
+
+    function toggleFav(btn) {
+      if (btn.classList.contains("fav-active")) {
+        btn.classList.remove("fav-active");
+        favCount--;
+      } else {
+        btn.classList.add("fav-active");
+        favCount++;
+      }
+      document.getElementById("favCount").textContent = `❤️ ${favCount}`;
+    }
+  </script>
 </body>
 </html>
