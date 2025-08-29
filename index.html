@@ -22,10 +22,12 @@
       <span class="font-bold text-lg text-green-700">Emergency Service</span>
     </div>
     <div class="flex items-center gap-4">
-      <span id="favCount" class="text-red-500">❤️ 0</span>
-      <span class="text-green-500"> 100 </span>
+      <span id="favCount" class="text-red-500">0 ❤️</span>
+      <span id="coinCount" class="text-green-500 font-bold">100</span>
        <img src="assets/coin.png" alt="Right Logo" class="w-5 h-5 rounded-full border">
-      <button class="bg-green-600 text-white px-3 py-1 rounded-lg">2 Copy</button>
+      <!-- Copy Count -->
+     <button id="copyCount" class="bg-green-600 text-white px-3 py-1 rounded-lg"> Copy 0</button>
+
     </div>
   </header>
 
@@ -55,7 +57,7 @@
         <p class="text-3xl font-bold text-green-600 mt-2">999</p>
         <span class="inline-block bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm mt-2">All</span>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('999')" 
+          <button onclick="copyItem('999')" 
                   class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
             Copy
           </button>
@@ -78,10 +80,11 @@
         <p class="text-3xl font-bold text-green-600 mt-2">999</p>
         <span class="inline-block bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm mt-2">Police</span>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('999')" 
-                  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
-            Copy
-          </button>
+          <button onclick="copyItem('10666')"  class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
+
+          Copy</button>
+            
+    
           <button onclick="callNumber('Police Helpline Number','999')" 
                   class="flex-1 bg-green-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-green-700">
             Call
@@ -101,7 +104,7 @@
         <p class="text-3xl font-bold text-green-600 mt-2">999</p>
         <span class="inline-block bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm mt-2">Fire</span>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('999')" 
+          <button onclick="copyItem('999')" 
                   class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
             Copy
           </button>
@@ -124,7 +127,7 @@
         <p class="text-2xl font-bold text-green-600 mt-2">1994-999999</p>
         <span class="inline-block bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm mt-2">Health</span>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('1994-999999')" 
+          <button onclick="copyItem('1994-999999')" 
                   class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
             Copy
           </button>
@@ -147,7 +150,7 @@
         <p class="text-3xl font-bold text-green-600 mt-2">109</p>
         <span class="inline-block bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm mt-2">Help</span>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('109')" 
+          <button onclick="copyItem('109')" 
                   class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
             Copy
           </button>
@@ -170,7 +173,7 @@
         <p class="text-3xl font-bold text-green-600 mt-2">106</p>
         <span class="inline-block bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm mt-2">Govt.</span>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('106')" 
+          <button onclick="copyItem('106')" 
                   class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
             Copy
           </button>
@@ -193,7 +196,7 @@
         <p class="text-3xl font-bold text-green-600 mt-2">16216</p>
         <span class="inline-block bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm mt-2">Electricity</span>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('16216')" 
+          <button onclick="copyItem('16216')" 
                   class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
             Copy
           </button>
@@ -216,7 +219,7 @@
         <p class="text-3xl font-bold text-green-600 mt-2">16445</p>
         <span class="inline-block bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm mt-2">NGO</span>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('16445')" 
+          <button onclick="copyItem('16445')" 
                   class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
             Copy
           </button>
@@ -239,7 +242,7 @@
         <p class="text-3xl font-bold text-green-600 mt-2">163</p>
         <span class="inline-block bg-gray-200 text-gray-700 px-4 py-1 rounded-full text-sm mt-2">Travel</span>
         <div class="mt-4 flex gap-3">
-          <button onclick="copyNumber('163')" 
+          <button onclick="copyItem('163')" 
                   class="flex-1 border border-gray-300 px-3 py-2 rounded-lg text-sm hover:bg-gray-100">
             Copy
           </button>
@@ -264,6 +267,11 @@
   <!-- JS -->
   <script>
     let favCount = 0;
+    let coins = 100;
+
+    function updateCoins() {
+      document.getElementById("coinCount").textContent = coins;
+    }
 
     function copyNumber(num) {
       navigator.clipboard.writeText(num);
@@ -271,6 +279,14 @@
     }
 
     function callNumber(name, num) {
+      if (coins < 20) {
+        alert("Not enough coins! At least 20 required.");
+        return;
+      }
+
+      coins -= 20; // deduct coins
+      updateCoins();
+
       const time = new Date().toLocaleTimeString();
       const li = document.createElement("li");
       li.textContent = `${name} (${num}) - ${time}`;
@@ -290,6 +306,14 @@
         favCount++;
       }
       document.getElementById("favCount").textContent = `❤️ ${favCount}`;
+    }
+    let copyCount = 0;
+
+    function copyItem(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        copyCount++;
+        document.getElementById("copyCount").innerText = "Copy " + copyCount;
+      });
     }
   </script>
 </body>
